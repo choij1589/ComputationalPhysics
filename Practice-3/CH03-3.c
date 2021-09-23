@@ -15,12 +15,7 @@
 //==== -> Write sigma in the summary report.                         ====//
 ///////////////////////////////////////////////////////////////////////////
 #include <stdio.h>
-double d2expx(const double x) {
-    return exp(x);
-}
-
-double d2expx3p(const double x, const double step) {
-    return (exp(x+step) - 2*exp(x) + exp(x-step)) / (step*step);#include <math.h>
+#include <math.h>
 
 // function declarations
 double d2expx(const double x);
