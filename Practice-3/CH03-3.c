@@ -23,8 +23,8 @@ double d2expx3p(const double x, const double step);
 
 // entry point
 int main() {
-	const double N = 100;
-	const double step = 1/N;
+	const double N = 100.;
+	const double step = 1./N;
 	double var = 0.;
 	for (unsigned int n = 1; n <= N; n++) {
 		const double x_n = n/N;
@@ -44,5 +44,5 @@ double d2expx(const double x) {
 }
 
 double d2expx3p(const double x, const double step) {
-	return (exp(x+step) - 2*exp(x) + exp(x-step)) / (step*step);
+	return (exp(x+step) - 2.*exp(x) + exp(x-step)) / (step*step);
 }
