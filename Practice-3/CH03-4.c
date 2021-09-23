@@ -43,7 +43,7 @@ int main() {
 	
 	// now calculate mean and std for each array
 	double mean1 = 0., mean2 = 0., mean3 = 0., mean4 = 0.;
-	double var1 = 0., var2 = 0., var3 = 0., var4 = 0.;
+	double std1 = 0., std2 = 0., std3 = 0., std4 = 0.;
 	for (unsigned int k = 0; k < max_k; k++) {
 		mean1 += pow1[k]/max_k;
 		mean2 += pow2[k]/max_k;
@@ -52,16 +52,16 @@ int main() {
 	}
 
 	for (unsigned int k = 0; k < max_k; k++) {
-		var1 += pow(pow1[k] - mean1, 2)/max_k;
-		var2 += pow(pow2[k] - mean2, 2)/max_k;
-		var3 += pow(pow3[k] - mean3, 2)/max_k;
-		var4 += pow(pow4[k] - mean4, 2)/max_k;
+		std1 += pow(pow1[k] - mean1, 2)/max_k;
+		std2 += pow(pow2[k] - mean2, 2)/max_k;
+		std3 += pow(pow3[k] - mean3, 2)/max_k;
+		std4 += pow(pow4[k] - mean4, 2)/max_k;
 	}
-	double std1, std2, std3, std4;
+	std1 = sqrt(std1); std2 = sqrt(std2); std3 = sqrt(std3); std4 = sqrt(std4);
 	printf("mean\t%e\t%e\t%e\t%e\n", mean1, mean2, mean3, mean4);
-	printf("std\t%e\t%e\t%e\t%e\n", sqrt(var1), sqrt(var2), sqrt(var3), sqrt(var4));
+	printf("std\t%e\t%e\t%e\t%e\n", std1, std2, std3, std4);
 	fprintf(f, "mean\t%e\t%e\t%e\t%e\n", mean1, mean2, mean3, mean4);
-	fprintf(f, "std\t%e\t%e\t%e\t%e\n", sqrt(var1), sqrt(var2), sqrt(var3), sqrt(var4));
+	fprintf(f, "std\t%e\t%e\t%e\t%e\n", std1, std2, std3, std4);
 
 	fclose(f);
 
