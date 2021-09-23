@@ -35,9 +35,9 @@ int main() {
 		const double dlogx3p_1 = dlogx3p(1., step);
 		const double dlogx5p_1 = dlogx5p(1., step);
 		
-		printf("%e\t%e\t%e\t", step, dlogx_1, dlogx3p_1, dlogx5p_1);
+		printf("%e\t%e\t%e\t%e\t", step, dlogx_1, dlogx3p_1, dlogx5p_1);
 		printf("%e\t%e\n", dlogx3p_1 - dlogx_1, dlogx5p_1 - dlogx_1);
-		fprintf(f, "%e\t%e\t%e\t", step, dlogx_1, dlogx3p_1, dlogx5p_1);
+		fprintf(f, "%e\t%e\t%e\t%e\t", step, dlogx_1, dlogx3p_1, dlogx5p_1);
 		fprintf(f, "%e\t%e\n", dlogx3p_1 - dlogx_1, dlogx5p_1 - dlogx_1);
 	}
 	fclose(f);
