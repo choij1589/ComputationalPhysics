@@ -17,10 +17,11 @@ int main() {
 	// Use current time as seed for random generator
 	srand(time(NULL));
 
-	printf("k\tarea\n");
+	printf("k\tarea\tarea(centered)\n");
 	for (unsigned long k = 10; k <= 20; k++) {
 		const unsigned long N = (long)pow(2, k);
 		unsigned long hit = 0, fail = 0;
+		unsigned long hit_ = 0, fail_ = 0;
 		for (unsigned long i = 0; i < N; i++) {
 			// Is it really uniform?
 			const double x = (double)rand()/RAND_MAX;
@@ -32,7 +33,13 @@ int main() {
 				hit++;
 			else
 				fail++;
+
+			if ((pow(x-1./2., 2) + pow(y-1./2., 2) < pow(1./2., 2)) &&
+                (pow(x-1./2., 2) + pow(y-1./2., 2) > pow(3./8., 2)))
+                hit_++;
+            else
+                fail_++;
 		}
-		printf("%d\t%f\n", k, (double)hit/(double)N);
+		printf("%d\t%f\t%f\n", k, (double)hit/(double)N, (double)hit_/(double)N);
 	}
 }
