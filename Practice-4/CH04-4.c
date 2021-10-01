@@ -18,18 +18,17 @@ int main() {
 	srand(time(NULL));
 
 	printf("k\tarea\n");
-	for (unsigned int k = 10; k <= 20; k++) {
-		const unsigned long N = pow(2, k);
+	for (unsigned long k = 10; k <= 20; k++) {
+		const unsigned long N = (long)pow(2, k);
 		unsigned long hit = 0, fail = 0;
 		for (unsigned long i = 0; i < N; i++) {
 			// Is it really uniform?
 			const double x = (double)rand()/RAND_MAX;
 			const double y = (double)rand()/RAND_MAX;
 
-			// I wand bool...
+			// I want bool...
 			if ((pow(x-1./2., 2) + pow(y-1./2., 2) < pow(1./2., 2)) && 
-				(pow(x-5./8., 2) + pow(y-5./8., 2) > pow(3./8., 2))
-			)
+				(pow(x-5./8., 2) + pow(y-5./8., 2) > pow(3./8., 2)))
 				hit++;
 			else
 				fail++;
