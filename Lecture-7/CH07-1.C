@@ -2,13 +2,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-//#include <complex.h>
+#include <complex.h>
 #include <fftw3.h>
 
 int main() {
 	const unsigned int n = 1024;
 	FILE *file;
-
+	
 	fftw_complex *in      = (fftw_complex*)fftw_malloc(sizeof(fftw_complex)*n);
 	fftw_complex *out     = (fftw_complex*)fftw_malloc(sizeof(fftw_complex)*n);
 	fftw_plan    forward  = fftw_plan_dft_1d(n, in, out, FFTW_FORWARD, FFTW_ESTIMATE);
