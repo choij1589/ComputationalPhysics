@@ -19,8 +19,8 @@
 #include <math.h>
 
 #define J		(1e-3*1.60219e-19)
-#define mu		(9.2741e-24)
-#define kB		(1.38062e-23)
+#define mu		(9.2741e-24)		// [J/T]
+#define kB		(1.38062e-23)		// [J/K]
 
 #define NN		10
 #define nmax	100
@@ -43,9 +43,11 @@ void unititeration(double hh, double T, int s[NN][NN][NN], int chbd[NN][NN][NN][
 					if (ii*ii+jj*jj+kk*kk == 1)
 						nn += s[(i+ii+NN)%NN][(j+jj+NN)%NN][(k+kk+NN)%NN];
 				// here is the modified parts
-				dE = 2*J*s[i][j][k]*nn + 2*hh*s[i][j][k];
+				dE = 2*s[i][j][k]*(-J*nn-mu*hh);
+				//dE = 2*J*s[i][j][k]*nn + 2*hh*s[i][j][k];
 				r = exp(-dE/(kB*T));
-				if (rand()/RAND_MAX < r) s[i][j][k] *= -1;
+				// printf("dE: %f\tr: %f\n", dE, r);
+				if ((double)rand()/RAND_MAX < r) s[i][j][k] *= -1;
 			}
 	return;
 }
@@ -100,7 +102,6 @@ double iteration(double hh, double T, int s[NN][NN][NN], int chbd[NN][NN][NN][2]
 
 int main() {
 	int i, j, k, h, n, pp;
-	// double T, H;
 	int s[NN][NN][NN];
 	int chbd[NN][NN][NN][2];
 
@@ -117,15 +118,18 @@ int main() {
 	for (k = 0; k < NN; k++)
 		s[i][j][k] = -1;
 
-	//printf("Temperature: "); scanf("%lf", &T);
-	//printf("Magnetic field: "); scanf("%lf", &H);
-	//printf("Magnesization state: %f\n", iteration(H, T, s, chbd));
-	
+	/*
+	double T, H;
+	printf("Temperature: "); scanf("%lf", &T);
+	printf("Magnetic field: "); scanf("%lf", &H);
+	printf("Magnesization state: %f\n", iteration(H, T, s, chbd));
+	*/
 	// To simulate at once
 	const double T = 30; // K
+	printf("Temperature\tMagnetic field\tMagnetisation state\n");
 	for (double H = -200; H <= 200; H += 10) {
-		printf("Temperature\tMagnetic field\tMagnetisation state\n");
 		printf("%f\t%f\t%f\n", T, H, iteration(H, T, s, chbd));
 	}
+	
 	return 0;
 }
