@@ -4,7 +4,7 @@
 
 double GetIntegrand(double s, double z, double phi_prime) {
 	// Define constants
-    const double s_prime = 0.01;        // [m]
+    const double s_prime = 0.005;        // [m]
 	const double lambda = 1e-9;			// [C/m]
 	
 	return (s_prime*lambda)/sqrt(pow(s, 2)+pow(s_prime, 2)+pow(z, 2)-2.*fabs(s)*s_prime*cos(phi_prime));
